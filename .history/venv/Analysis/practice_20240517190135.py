@@ -91,7 +91,7 @@ for col in categorical_cols:
     .size()\
     .reset_index(name='count')
     
-
+Print
 for col in categorical_cols:
     print(f"Unique values in {col}:\n{unique_values[col]}\n")
 

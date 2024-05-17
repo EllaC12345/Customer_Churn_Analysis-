@@ -60,7 +60,7 @@ cat_df
 # Plot histograms for numerical data
 num_fig = plt.figure(figsize=(20, 10))
 for i in range(len(numerical_cols)):
-    num_fig.add_subplot(3, 3, i+1)
+    fig.add_subplot(3, 3, i+1)
     plt.hist(num_df[numerical_cols[i]])
     plt.title(numerical_cols[i])
 
@@ -91,7 +91,7 @@ for col in categorical_cols:
     .size()\
     .reset_index(name='count')
     
-
+Print
 for col in categorical_cols:
     print(f"Unique values in {col}:\n{unique_values[col]}\n")
 
