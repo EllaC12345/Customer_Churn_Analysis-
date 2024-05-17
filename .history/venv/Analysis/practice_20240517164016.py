@@ -177,7 +177,7 @@ train.count(), test.count()
 
 # Train the decision tree model
 train.show(5)
-dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=8)
+dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=3)
 model = dt.fit(train)
 
 
@@ -223,10 +223,4 @@ maxDepths = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 test_accs, train_accs = evaluate_dt(maxDepths)
 df = pd.DataFrame(list(zip(maxDepths, test_accs, train_accs)), columns = ["maxDepth", "test_accuracy", "train_accuracy"]
                   )
-
-df
-px.line(df, x="maxDepth", y=['test_accuracy','train_accuracy' ])
-
-
-#%%
-#Model Deployment
+plt.line(dfx="maxDepth", y=['test_accs','train_accs' ], label="Test Accuracy")

@@ -226,7 +226,3 @@ df = pd.DataFrame(list(zip(maxDepths, test_accs, train_accs)), columns = ["maxDe
 
 df
 px.line(df, x="maxDepth", y=['test_accuracy','train_accuracy' ])
-
-
-#%%
-#Model Deployment

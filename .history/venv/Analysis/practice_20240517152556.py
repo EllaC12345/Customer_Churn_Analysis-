@@ -15,8 +15,8 @@ from pyspark.sql.functions import *
 # pyspark data preprocessing modules
 from pyspark.ml.feature import * 
 # pyspark data modeling and model evaluation modules
-from pyspark.ml.classification import *
-from pyspark.ml.evaluation import *
+from pyspark.ml.classification import DecisionTreeClassifier
+from pyspark.ml.evaluation import BinaryClassificationEvaluator
 
 # %%
 
@@ -158,75 +158,4 @@ data = indexer.fit(data).transform(data)
 data.show(5)
 
 categorical_cols_indexed.remove("Churn_Indexed")
-categorical_cols_indexed.remove("customerID_Indexed")
-categorical_cols_indexed
-
-categorical_vector_assembler = VectorAssembler(inputCols=categorical_cols_indexed, outputCol="categorical_features_vector")
-data = categorical_vector_assembler.transform(data)
-data.show(5)
-
-final_vector_assembler = VectorAssembler(inputCols=["scaled_numerical_features", "categorical_features_vector"], outputCol="final_feature_vector")
-data = final_vector_assembler.transform(data)
-data.show(5)
-data.select(["final_feature_vector", "Churn_Indexed"]).show(5)
-
-#%%
-#DecisionTreeClassifier
-train, test = data.randomSplit([0.8, 0.2], seed = 123)
-train.count(), test.count()
-
-# Train the decision tree model
-train.show(5)
-dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=8)
-model = dt.fit(train)
-
-
-# Make predictions using test data
-predictions_test = model.transform(test)
-predictions_test.select("Churn", "Churn_Indexed", "prediction").show(5)
-
-#%%
-## Model Evaluation
-evaluator = BinaryClassificationEvaluator(labelCol="Churn_Indexed")
-auc_test = evaluator.evaluate(predictions_test, {evaluator.metricName: "areaUnderROC"})
-auc_test
-
-# evaluate the model using the training data
-predictions_train = model.transform(train)
-auc_train = evaluator.evaluate(predictions_train, {evaluator.metricName: "areaUnderROC"})
-auc_train
-
-def evaluate_dt(model_params):
-    test_accuracies = []
-    train_accuracies = []
-    
-    for maxDepth in model_params:
-        # Train the decision tree model based on the maxDepth parameter
-        dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=maxDepth)
-        dtmodel = dt.fit(train)
-        
-        # Calculate the test error
-        predictions_test = dtmodel.transform(test)
-        evaluator = BinaryClassificationEvaluator(labelCol="Churn_Indexed")
-        auc_test = evaluator.evaluate(predictions_test, {evaluator.metricName: "areaUnderROC"})
-        # Append the test error to the test_accuracies list
-        test_accuracies.append(auc_test)
-        
-        # Calculate the train error
-        predictions_training = dtmodel.transform(train)
-        evaluator = BinaryClassificationEvaluator(labelCol="Churn_Indexed")
-        auc_training = evaluator.evaluate(predictions_training, {evaluator.metricName: "areaUnderROC"})
-        train_accuracies.append(auc_training)
-    return(test_accuracies, train_accuracies)
-
-maxDepths = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-test_accs, train_accs = evaluate_dt(maxDepths)
-df = pd.DataFrame(list(zip(maxDepths, test_accs, train_accs)), columns = ["maxDepth", "test_accuracy", "train_accuracy"]
-                  )
-
-df
-px.line(df, x="maxDepth", y=['test_accuracy','train_accuracy' ])
-
-
-#%%
-#Model Deployment
+categorical_cols_indexed.remove("")
