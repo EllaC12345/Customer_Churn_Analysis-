@@ -256,7 +256,7 @@ fig.update_layout(xaxis = {'categoryorder':'total descending'})
 df = data.groupBy("tenure", "Churn").count().toPandas()
 df['tenure_quartile'] = pd.qcut(df['tenure'], q=4, labels=["Quart_1", "Quart_2", "Quart_3", "Quart_4"])
 df
-df.groupby("tenure_quartile",'churn' )["count"].sum()
+df.groupby
 fig = px.bar(df, x="tenure", y="count", color="Churn", title="Customer Churn Rate by Tenure") 
 fig.show()  
 #import pyspark

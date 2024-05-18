@@ -251,16 +251,8 @@ df_sorted = df.sort_values(by="score", ascending=False)
 fig = px.bar(df_sorted, x=df_sorted.index, y="score", title="Feature Importance")
 fig.update_layout(xaxis = {'categoryorder':'total descending'})
 
-# lets create a Bar Chart to visualize the customer churn rate by tenure, by gender and  device protection plans,
+# le
 
-df = data.groupBy("tenure", "Churn").count().toPandas()
-df['tenure_quartile'] = pd.qcut(df['tenure'], q=4, labels=["Quart_1", "Quart_2", "Quart_3", "Quart_4"])
-df
-df.groupby("tenure_quartile",'churn' )["count"].sum()
-fig = px.bar(df, x="tenure", y="count", color="Churn", title="Customer Churn Rate by Tenure") 
-fig.show()  
-#import pyspark
-#print(pyspark.__version__)
-#print(nbformat.__version__)
-#!pip install --upgrade nbformat
+import pyspark
+print(pyspark.__version__)
 # %%

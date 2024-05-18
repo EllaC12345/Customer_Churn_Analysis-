@@ -175,15 +175,17 @@ data.select(["final_feature_vector", "Churn_Indexed"]).show(5)
 
 #%%
 #DecisionTreeClassifier
-train, test = data.randomSplit([0.7, 0.3], seed = 42)
+train, test = data.randomSplit([0.8, 0.2], seed = 123)
 train.count(), test.count()
 
 # Train the decision tree model
 train.show(5)
-dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=7)
-pipeline = Pipeline(stages=[dt])
+dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=8)
+pipeline = Pipeline(stages=[final_vector_assembler, dt])
+
 model = pipeline.fit(train)
-?Pipeline
+
+
 # Make predictions using test data
 predictions_test = model.transform(test)
 predictions_test.select("Churn", "Churn_Indexed", "prediction").show()
@@ -206,18 +208,17 @@ def evaluate_dt(model_params):
     for maxDepth in model_params:
         # Train the decision tree model based on the maxDepth parameter
         dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=maxDepth)
-        pipeline = Pipeline(stages=[dt])
-        model = pipeline.fit(train)
+        dt_model = pipeline.fit(train)
         
         # Calculate the test error
-        predictions_test = model.transform(test)
+        predictions_test = dt_model.transform(test)
         evaluator = BinaryClassificationEvaluator(labelCol="Churn_Indexed")
         auc_test = evaluator.evaluate(predictions_test, {evaluator.metricName: "areaUnderROC"})
         # Append the test error to the test_accuracies list
         test_accuracies.append(auc_test)
         
         # Calculate the train error
-        predictions_training = model.transform(train)
+        predictions_training = dt_model.transform(train)
         evaluator = BinaryClassificationEvaluator(labelCol="Churn_Indexed")
         auc_training = evaluator.evaluate(predictions_training, {evaluator.metricName: "areaUnderROC"})
         train_accuracies.append(auc_training)
@@ -225,42 +226,32 @@ def evaluate_dt(model_params):
 
 maxDepths = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 test_accs, train_accs = evaluate_dt(maxDepths)
-df = pd.DataFrame(list(zip(maxDepths, test_accs, train_accs)), columns = ["maxDepth", "test_accuracy", "train_accuracy"], index= [numerical_cols + categorical_cols_indexed]
+df = pd.DataFrame(list(zip(maxDepths, test_accs, train_accs)), columns = ["maxDepth", "test_accuracy", "train_accuracy"]
                   )
 
 df
+px.line(df, x="maxDepth", y=['test_accuracy','train_accuracy' ])
 
 
 #%%
 #Model Deployment
 # How to reduce the churn rate
 # Get the feature importances
-dt_model = model.stages[-1]
-feature_importance = dt_model.featureImportances
+rf_model = model.stages[-1]
+feature_importance = rf_model.featureImportances
 feature_importance
 scores = []
 for  index, importance in enumerate(feature_importance):
     score = [index, importance]
     scores.append(score)
         
-#?model.featureImportances  
+?model.featureImportances  
 print(scores)
 df = pd.DataFrame(scores, columns=[ "feature_number", "score"], index = categorical_cols_indexed + numerical_cols)
 df
-df_sorted = df.sort_values(by="score", ascending=False)
-fig = px.bar(df_sorted, x=df_sorted.index, y="score", title="Feature Importance")
-fig.update_layout(xaxis = {'categoryorder':'total descending'})
+px.bar(df, x=df.index, y="score", title="Feature Importance")
 
-# lets create a Bar Chart to visualize the customer churn rate by tenure, by gender and  device protection plans,
 
-df = data.groupBy("tenure", "Churn").count().toPandas()
-df['tenure_quartile'] = pd.qcut(df['tenure'], q=4, labels=["Quart_1", "Quart_2", "Quart_3", "Quart_4"])
-df
-df.groupby("tenure_quartile",'churn' )["count"].sum()
-fig = px.bar(df, x="tenure", y="count", color="Churn", title="Customer Churn Rate by Tenure") 
-fig.show()  
-#import pyspark
-#print(pyspark.__version__)
-#print(nbformat.__version__)
-#!pip install --upgrade nbformat
+import pyspark
+print(pyspark.__version__)
 # %%

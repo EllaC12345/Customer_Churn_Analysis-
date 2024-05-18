@@ -175,12 +175,12 @@ data.select(["final_feature_vector", "Churn_Indexed"]).show(5)
 
 #%%
 #DecisionTreeClassifier
-train, test = data.randomSplit([0.7, 0.3], seed = 42)
+train, test = data.randomSplit([0.7, 0.], seed = 42)
 train.count(), test.count()
 
 # Train the decision tree model
 train.show(5)
-dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=7)
+dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=8)
 pipeline = Pipeline(stages=[dt])
 model = pipeline.fit(train)
 ?Pipeline
@@ -225,10 +225,11 @@ def evaluate_dt(model_params):
 
 maxDepths = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 test_accs, train_accs = evaluate_dt(maxDepths)
-df = pd.DataFrame(list(zip(maxDepths, test_accs, train_accs)), columns = ["maxDepth", "test_accuracy", "train_accuracy"], index= [numerical_cols + categorical_cols_indexed]
+df = pd.DataFrame(list(zip(maxDepths, test_accs, train_accs)), columns = ["maxDepth", "test_accuracy", "train_accuracy"]
                   )
 
 df
+px.line(df, x="maxDepth", y=['test_accuracy','train_accuracy' ])
 
 
 #%%
@@ -243,24 +244,13 @@ for  index, importance in enumerate(feature_importance):
     score = [index, importance]
     scores.append(score)
         
-#?model.featureImportances  
+?model.featureImportances  
 print(scores)
 df = pd.DataFrame(scores, columns=[ "feature_number", "score"], index = categorical_cols_indexed + numerical_cols)
 df
-df_sorted = df.sort_values(by="score", ascending=False)
-fig = px.bar(df_sorted, x=df_sorted.index, y="score", title="Feature Importance")
-fig.update_layout(xaxis = {'categoryorder':'total descending'})
+px.bar(df, x=df.index, y="score", title="Feature Importance")
 
-# lets create a Bar Chart to visualize the customer churn rate by tenure, by gender and  device protection plans,
 
-df = data.groupBy("tenure", "Churn").count().toPandas()
-df['tenure_quartile'] = pd.qcut(df['tenure'], q=4, labels=["Quart_1", "Quart_2", "Quart_3", "Quart_4"])
-df
-df.groupby("tenure_quartile",'churn' )["count"].sum()
-fig = px.bar(df, x="tenure", y="count", color="Churn", title="Customer Churn Rate by Tenure") 
-fig.show()  
-#import pyspark
-#print(pyspark.__version__)
-#print(nbformat.__version__)
-#!pip install --upgrade nbformat
+import pyspark
+print(pyspark.__version__)
 # %%
