@@ -246,10 +246,14 @@ for  index, importance in enumerate(feature_importance):
         
 ?model.featureImportances  
 print(scores)
-df = pd.DataFrame(scores, columns=[ "feature_number", "score"], index = categorical_cols_indexed + numerical_cols)
-df
-px.bar(df, x=df.index, y="score", title="Feature Importance")
+df = pd.DataFrame(scores[1], columns=[ "score"], index = categorical_cols_indexed + numerical_cols)
 
+
+
+#px.bar()
+
+scores2 = [score for i in enumerate(feature_importances)]
+scores2
 
 import pyspark
 print(pyspark.__version__)

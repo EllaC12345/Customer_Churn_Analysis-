@@ -181,8 +181,7 @@ train.count(), test.count()
 # Train the decision tree model
 train.show(5)
 dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=8)
-pipeline = Pipeline(stages=[dt])
-model = pipeline.fit(train)
+model = dt.fit(train)
 
 
 # Make predictions using test data
@@ -207,7 +206,7 @@ def evaluate_dt(model_params):
     for maxDepth in model_params:
         # Train the decision tree model based on the maxDepth parameter
         dt = DecisionTreeClassifier(featuresCol="final_feature_vector", labelCol="Churn_Indexed", maxDepth=maxDepth)
-        dtmodel = pipeline.fit(train)
+        dtmodel = dt.fit(train)
         
         # Calculate the test error
         predictions_test = dtmodel.transform(test)
@@ -236,8 +235,8 @@ px.line(df, x="maxDepth", y=['test_accuracy','train_accuracy' ])
 #Model Deployment
 # How to reduce the churn rate
 # Get the feature importances
-rf_model = model.stages[-1]
-feature_importance = rf_model.featureImportances
+rf_model
+feature_importance = model.featureImportances
 feature_importance
 scores = []
 for  index, importance in enumerate(feature_importance):
@@ -246,11 +245,14 @@ for  index, importance in enumerate(feature_importance):
         
 ?model.featureImportances  
 print(scores)
-df = pd.DataFrame(scores, columns=[ "feature_number", "score"], index = categorical_cols_indexed + numerical_cols)
-df
-px.bar(df, x=df.index, y="score", title="Feature Importance")
+df = pd.DataFrame(scores, columns=[ "score"], index = categorical_cols_indexed + numerical_cols)
+print(f"Shape of scores: {len(scores)}")
 
+
+#px.bar()
+
+scores2 = [score for i in enumerate(feature_importances)]
+scores2
 
 import pyspark
 print(pyspark.__version__)
-# %%

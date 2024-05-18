@@ -237,7 +237,7 @@ px.line(df, x="maxDepth", y=['test_accuracy','train_accuracy' ])
 # How to reduce the churn rate
 # Get the feature importances
 rf_model = model.stages[-1]
-feature_importance = rf_model.featureImportances
+feature_importance = .featureImportances
 feature_importance
 scores = []
 for  index, importance in enumerate(feature_importance):
@@ -246,10 +246,14 @@ for  index, importance in enumerate(feature_importance):
         
 ?model.featureImportances  
 print(scores)
-df = pd.DataFrame(scores, columns=[ "feature_number", "score"], index = categorical_cols_indexed + numerical_cols)
-df
-px.bar(df, x=df.index, y="score", title="Feature Importance")
+df = pd.DataFrame(scores, columns=[ "score"], index = categorical_cols_indexed + numerical_cols)
+print(f"Shape of scores: {len(scores)}")
 
+
+#px.bar()
+
+scores2 = [score for i in enumerate(feature_importances)]
+scores2
 
 import pyspark
 print(pyspark.__version__)

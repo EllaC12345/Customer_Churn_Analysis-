@@ -248,7 +248,7 @@ for  index, importance in enumerate(feature_importance):
 print(scores)
 df = pd.DataFrame(scores, columns=[ "feature_number", "score"], index = categorical_cols_indexed + numerical_cols)
 df
-px.bar(df, x=df.index, y="score", title="Feature Importance")
+px.bar(df, x=df.index, y="score", title="Feature Importance", ascending=False)
 
 
 import pyspark
