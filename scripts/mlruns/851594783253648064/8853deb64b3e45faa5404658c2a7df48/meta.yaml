@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/8853deb64b3e45faa5404658c2a7df48/artifacts
+end_time: 1718590227427
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: 8853deb64b3e45faa5404658c2a7df48
+run_name: Voting Classifier
+run_uuid: 8853deb64b3e45faa5404658c2a7df48
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718590225188
+status: 3
+tags: []
+user_id: ellandalla

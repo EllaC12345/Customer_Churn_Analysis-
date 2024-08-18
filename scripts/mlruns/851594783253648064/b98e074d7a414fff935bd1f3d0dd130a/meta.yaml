@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/b98e074d7a414fff935bd1f3d0dd130a/artifacts
+end_time: 1718584313281
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: b98e074d7a414fff935bd1f3d0dd130a
+run_name: Light Gradient Boosting Machine
+run_uuid: b98e074d7a414fff935bd1f3d0dd130a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718584313217
+status: 3
+tags: []
+user_id: ellandalla

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/51ea027facad457eb97e97d6697f584d/artifacts
+end_time: 1718585013603
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: 51ea027facad457eb97e97d6697f584d
+run_name: K Neighbors Classifier
+run_uuid: 51ea027facad457eb97e97d6697f584d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718585013552
+status: 3
+tags: []
+user_id: ellandalla

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/aa26d97c01fc4c6894646a07c258cf0f/artifacts
+end_time: 1718584313569
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: aa26d97c01fc4c6894646a07c258cf0f
+run_name: Linear Discriminant Analysis
+run_uuid: aa26d97c01fc4c6894646a07c258cf0f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718584313517
+status: 3
+tags: []
+user_id: ellandalla

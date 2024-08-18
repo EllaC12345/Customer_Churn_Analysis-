@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/50b181344a5b431691ef74001ad1bd4c/artifacts
+end_time: 1718585013913
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: 50b181344a5b431691ef74001ad1bd4c
+run_name: Decision Tree Classifier
+run_uuid: 50b181344a5b431691ef74001ad1bd4c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718585013858
+status: 3
+tags: []
+user_id: ellandalla

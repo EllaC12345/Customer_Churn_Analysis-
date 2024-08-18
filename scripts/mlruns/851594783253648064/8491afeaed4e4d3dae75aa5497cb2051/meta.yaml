@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/8491afeaed4e4d3dae75aa5497cb2051/artifacts
+end_time: 1718574470420
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: 8491afeaed4e4d3dae75aa5497cb2051
+run_name: Session Initialized dc5b
+run_uuid: 8491afeaed4e4d3dae75aa5497cb2051
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718574140029
+status: 3
+tags: []
+user_id: ellandalla

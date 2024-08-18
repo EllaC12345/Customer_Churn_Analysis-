@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/bf6d112b9ceb44f2be537aaa00bfc9af/artifacts
+end_time: 1718596890972
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: bf6d112b9ceb44f2be537aaa00bfc9af
+run_name: Logistic Regression
+run_uuid: bf6d112b9ceb44f2be537aaa00bfc9af
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718596889472
+status: 3
+tags: []
+user_id: ellandalla

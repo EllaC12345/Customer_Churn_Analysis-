@@ -1,0 +1,8 @@
+channels:
+- conda-forge
+dependencies:
+- pip<=24.0
+- pip:
+  - mlflow==2.13.2
+  - pycaret==3.3.2
+name: Churn_Analysis-env

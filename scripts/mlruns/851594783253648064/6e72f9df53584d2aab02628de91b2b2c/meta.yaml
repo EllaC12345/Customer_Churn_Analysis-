@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ellandalla/Desktop/Customer_Churn_Analysis-/venv/Analysis/mlruns/851594783253648064/6e72f9df53584d2aab02628de91b2b2c/artifacts
+end_time: 1718584313430
+entry_point_name: ''
+experiment_id: '851594783253648064'
+lifecycle_stage: active
+run_id: 6e72f9df53584d2aab02628de91b2b2c
+run_name: Ridge Classifier
+run_uuid: 6e72f9df53584d2aab02628de91b2b2c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718584313369
+status: 3
+tags: []
+user_id: ellandalla
