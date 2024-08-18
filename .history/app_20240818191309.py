@@ -47,7 +47,7 @@ ART_PATH = BASE_PATH.joinpath("artifacts").resolve()
 
 
 # DATA
-churn_data_path = ("Data/churn_prediction_df.pkl")
+churn_data_path = ("scripts/Data/churn_prediction_df.pkl")
 resolved_churn_path = os.path.abspath(churn_data_path)
 Churn_data = pd.read_pickle(resolved_churn_path)
 
@@ -295,8 +295,8 @@ def update_categorical_drivers(input_id_2):
         
 
 
-recommendation_path = ("Data/recommendation.csv")
-resolved_recoomendation_path = os.path.abspath(recommendation_path)        
+recommendation_path = "/scripts/Data/recommendation.csv"
+resolved_recommendation_path = os.path.abspath(recommendation_path)        
 @app.callback(
     Output("download", "data"), 
     Input("btn", "n_clicks"), 
@@ -306,9 +306,9 @@ resolved_recoomendation_path = os.path.abspath(recommendation_path)
 def download_strategy(n_clicks):
     if n_clicks is None:
         raise PreventUpdate
-    return dcc.send_file(resolved_recoomendation_path)
+    return dcc.send_file(resolved_recomendation_path)
 if __name__ == '__main__':
-    app.run_server(debug=True, port =8051)
+    app.run_server(debug=True)
 
     
 # %%

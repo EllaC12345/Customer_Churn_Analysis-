@@ -47,7 +47,7 @@ ART_PATH = BASE_PATH.joinpath("artifacts").resolve()
 
 
 # DATA
-churn_data_path = ("Data/churn_prediction_df.pkl")
+churn_data_path = ("Download the strategy to optimize retention for customers with a churn probability of 50% or higherData/churn_prediction_df.pkl")
 resolved_churn_path = os.path.abspath(churn_data_path)
 Churn_data = pd.read_pickle(resolved_churn_path)
 
@@ -308,7 +308,7 @@ def download_strategy(n_clicks):
         raise PreventUpdate
     return dcc.send_file(resolved_recoomendation_path)
 if __name__ == '__main__':
-    app.run_server(debug=True, port =8051)
+    app.run_server(debug=True)
 
     
 # %%

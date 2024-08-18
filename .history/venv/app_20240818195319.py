@@ -308,7 +308,7 @@ def download_strategy(n_clicks):
         raise PreventUpdate
     return dcc.send_file(resolved_recoomendation_path)
 if __name__ == '__main__':
-    app.run_server(debug=True, port =8051)
+    app.run_server(debug=True, port)
 
     
 # %%

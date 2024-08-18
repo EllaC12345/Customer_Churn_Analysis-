@@ -130,7 +130,7 @@ Accordion = dbc.Row(
 
 button = dbc.Row(
     dbc.Col([
-        html.P("Download the strategy to optimize retention for customers who are more likely than not to churn.", style = COMMON_STYLE),
+        html.P("Download the strategy to optimize retention  customers who are more likely than not to churn.", style = COMMON_STYLE),
         dbc.Button("Strategy", id="btn", color="primary", style = COMMON_STYLE, ),
         dcc.Download(id="download"),
     ],
@@ -308,7 +308,7 @@ def download_strategy(n_clicks):
         raise PreventUpdate
     return dcc.send_file(resolved_recoomendation_path)
 if __name__ == '__main__':
-    app.run_server(debug=True, port =8051)
+    app.run_server(debug=True)
 
     
 # %%
