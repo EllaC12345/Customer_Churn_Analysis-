@@ -295,7 +295,7 @@ def update_categorical_drivers(input_id_2):
         
 
 
-recommendation_path = ("scripts/Data/recommendation.csv")
+recommendation_path = ("Data/recommendation.csv")
 resolved_recoomendation_path = os.path.abspath(recommendation_path)        
 @app.callback(
     Output("download", "data"), 

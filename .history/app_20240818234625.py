@@ -47,7 +47,7 @@ ART_PATH = BASE_PATH.joinpath("artifacts").resolve()
 
 
 # DATA
-churn_data_path = ("scripts/Data/churn_prediction_df.pkl")
+churn_data_path = ("scriptsData/churn_prediction_df.pkl")
 resolved_churn_path = os.path.abspath(churn_data_path)
 Churn_data = pd.read_pickle(resolved_churn_path)
 
@@ -295,7 +295,7 @@ def update_categorical_drivers(input_id_2):
         
 
 
-recommendation_path = ("scripts/Data/recommendation.csv")
+recommendation_path = ("Data/recommendation.csv")
 resolved_recoomendation_path = os.path.abspath(recommendation_path)        
 @app.callback(
     Output("download", "data"), 
