@@ -310,7 +310,8 @@ def download_strategy(n_clicks):
         raise PreventUpdate
     return dcc.send_file(resolved_recoomendation_path)
 if __name__ == '__main__':
-    app.run_server(debug=False, port=10000, host='0.0.0.0')
+    port = int(os.environ.get('PORT', 8050))  # Default to port 8050 if not specified
+    app.run_server(debug=False, port=port, host='0.0.0.0')
 
     
 # %%
