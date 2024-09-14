@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git
 
 # Clone the project repo into the container
-RUN git clone https://github.com/EllaN12/Customer_Churn_Analysis-.git /app
+RUN git clone https://github.com/EllaN12/Customer_Churn_Analysis-.git 
 
 # Change directory to the cloned project
 WORKDIR /app
