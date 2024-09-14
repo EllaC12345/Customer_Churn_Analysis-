@@ -25,8 +25,6 @@ app = dash.Dash(
     __name__, 
     external_stylesheets=external_stylesheets
 )
-server = app.server 
-
 
 # Constants for styling
 PLOT_BACKGROUND = 'rgba(0,0,0,0)'
@@ -49,7 +47,7 @@ ART_PATH = BASE_PATH.joinpath("artifacts").resolve()
 
 
 # DATA
-churn_data_path = ("scripts/Data/churn_prediction_df.pkl")
+churn_data_path = ("Data/churn_prediction_df.pkl")
 resolved_churn_path = os.path.abspath(churn_data_path)
 Churn_data = pd.read_pickle(resolved_churn_path)
 
@@ -297,7 +295,7 @@ def update_categorical_drivers(input_id_2):
         
 
 
-recommendation_path = ("scripts/Data/recommendation.csv")
+recommendation_path = ("Data/recommendation.csv")
 resolved_recoomendation_path = os.path.abspath(recommendation_path)        
 @app.callback(
     Output("download", "data"), 
@@ -310,8 +308,7 @@ def download_strategy(n_clicks):
         raise PreventUpdate
     return dcc.send_file(resolved_recoomendation_path)
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8050))  # Default to port 8050 if not specified
-    app.run_server(debug=False, port=port, host='0.0.0.0')
+    app.run_server(debug=True, port =8080)
 
     
 # %%

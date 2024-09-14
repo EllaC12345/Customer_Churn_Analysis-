@@ -1,0 +1,48 @@
+/venv/*
+.history/*
+venv/Ellas_Key_pair.pem
+# Ignore Mac system files
+.DS_Store
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore environment variable files
+.env
+venv/
+
+# Ignore build artifacts
+/dist
+/build
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+*.swp
+*.swo
+
+# Ignore temporary files
+*.tmp
+*.bak
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore compiled files
+*.class
+*.o
+*.a
+*.so
+
+# Ignore binary files
+*.exe
+*.dll
+*.dmg
+*.zip
+*.tar.gz
