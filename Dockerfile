@@ -17,7 +17,7 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 # Expose the port (modify if your app uses a different port)
-EXPOSE 5000
+EXPOSE 8080
 
 # Run the app
 CMD ["python", "app.py"]
